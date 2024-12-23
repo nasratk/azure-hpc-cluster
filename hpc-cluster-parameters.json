@@ -1,0 +1,31 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "domainJoinUsername": {
+        "value": "domain-admin-user"
+      },
+      "domainJoinPassword": {
+        "value": "your-secure-password"
+      },
+      "adminUsername": {
+        "value": "vm-admin-user"
+      },
+      "adminPassword": {
+        "value": "your-vm-password"
+      },
+      "location": {
+        "value": "UK South"
+      },
+      "resourceGroupName": {
+        "value": "hpc-uk-01"
+      },
+      "subnetName": {
+        "value": "your-existing-subnet"
+      },
+      "vnetName": {
+        "value": "your-existing-vnet"
+      }
+    }
+  }
+  
