@@ -2,29 +2,62 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-      "domainJoinUsername": {
-        "value": "domain-admin-user"
+    //   "location": {
+    //     "value": "uksouth"
+    //   },
+    //   "resourceGroupName": {
+    //     "value": "rg-hpcuk-temp"
+    //   },
+      "clusterName": {
+        "value": "hpcukt"
       },
-      "domainJoinPassword": {
-        "value": "your-secure-password"
+      "computeNodeNamePrefix": {
+        "value": "hpcukt"
       },
-      "adminUsername": {
-        "value": "vm-admin-user"
+      "virtualNetworkName": {
+        "value": "numerica-uk-vnet"
       },
-      "adminPassword": {
-        "value": "your-vm-password"
-      },
-      "location": {
-        "value": "UK South"
-      },
-      "resourceGroupName": {
-        "value": "hpc-uk-01"
+      "virtualNetworkResourceGroupName": {
+        "value": "rg-numerica-uk"
       },
       "subnetName": {
-        "value": "your-existing-subnet"
+        "value": "hpcuk-subnet"
       },
-      "vnetName": {
-        "value": "your-existing-vnet"
+      "domainName": {
+        "value": "numerica.in"
+      },
+      "adminUsername": {
+        "value": "nasrat.kamal"
+      },
+      "adminPassword": {
+        "value": "Bangalore#100"
+      },
+      "vaultName": {
+        "value": "kv-num-uk"
+      },
+      "vaultResourceGroup": {
+        "value": "rg-numerica-uk-hpc"
+      },
+      "certificateUrl": {
+        "value": "https://kv-num-uk.vault.azure.net/secrets/hpcuk-comm/32a13713553944a7aff3d4400d89e0be"
+      },
+      "certThumbprint": {
+        "value": "993B33DE2C7536FB912F1E313981C57F19F8B94A"
+      },
+      "createPublicIPAddressForHeadNode": {
+        "value": "No"
+    //   },
+    //   "headNodeOS": {
+    //     "value": "Default"
+    //   },
+    //   "headNodeImageResourceId": {
+    //     "value": null
+    //   },
+    //   "computeNodeImage": {
+    //     "value": "Default"
+    //   },
+    //   "computeNodeImageResourceId": {
+    //     "value": null
       }
     }
   }
