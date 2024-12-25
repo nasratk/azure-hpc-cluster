@@ -90,7 +90,7 @@
       },
       "computeNodeImage": {
         "type": "string",
-        "defaultValue": "WindowsServer2012R2WithExcel",
+        "defaultValue": "WindowsServer2016",
         "allowedValues": [
           "WindowsServer2008R2",
           "WindowsServer2012",
@@ -736,6 +736,45 @@
               },
               "AzureStorageConnString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountId'), '2019-04-01').keys[0].value)]"
             }
+          }
+        }
+      },
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2021-04-01",
+        "name": "[concat('CustomScriptDeployment-', padLeft(copyIndex(), 3, '0'))]",
+        "copy": {
+          "name": "CustomScriptForComputeNodes",
+          "count": "[parameters('computeNodeNumber')]"
+        },
+        "properties": {
+          "mode": "Incremental",
+          "template": {
+            "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+            "contentVersion": "1.0.0.0",
+            "resources": [
+              {
+                "type": "Microsoft.Compute/virtualMachines/extensions",
+                "apiVersion": "2021-04-01",
+                "name": "[concat(parameters('computeNodeNamePrefix'), padLeft(copyIndex(), 3, '0'), '/InstallExcel')]",
+                "location": "[resourceGroup().location]",
+                "dependsOn": [
+                  "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('computeNodeNamePrefix'), padLeft(copyIndex(), 3, '0')))]"
+                ],
+                "properties": {
+                  "publisher": "Microsoft.Compute",
+                  "type": "CustomScriptExtension",
+                  "typeHandlerVersion": "1.10",
+                  "autoUpgradeMinorVersion": true,
+                  "settings": {
+                    "fileUris": [
+                      "https://raw.githubusercontent.com/nasratk/azure-hpc-cluster/main/install-excel-proplus2016.ps1"
+                    ],
+                    "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File install-excel-proplus2016.ps1"
+                  }
+                }
+              }
+            ]
           }
         }
       },
