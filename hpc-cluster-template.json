@@ -754,8 +754,8 @@
           "properties": {
               "mode": "Incremental",
               "templateLink": {
-                "uri": "https://raw.githubusercontent.com/nasratk/azure-hpc-cluster/main/computenode.json",
-//                "uri": "[concat(variables('rawRepoUrl'), '/computenode.json')]",
+//                "uri": "https://raw.githubusercontent.com/nasratk/azure-hpc-cluster/main/computenode.json",
+                "uri": "[concat(variables('rawRepoUrl'), '/computenode.json')]",
                   "contentVersion": "1.0.0.0"
               },
               "parameters": {
@@ -818,15 +818,15 @@
                   },
                   "domainName": {
                       "value": "[variables('domainName')]"
+                  },
+                  "customScript": {
+                      "value": {
+                          "fileUris": [
+                              "[concat(variables('rawRepoUrl'), '/install-office.ps1')]"
+                          ],
+                          "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File install-office.ps1"
+                      }
                   }
-                  // "customScript": {
-                  //     "value": {
-                  //         "fileUris": [
-                  //             "[concat(variables('rawRepoUrl'), '/install-office.ps1')]"
-                  //         ],
-                  //         "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File install-office.ps1"
-                  //     }
-                  // }
               }
           }
       }
