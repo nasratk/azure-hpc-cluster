@@ -176,10 +176,10 @@
       "metadata": {
         "description": "The DNS servers in order, if not configured, the DNS servers configured in the virtual network will be used."
       }
-    }
-    // "customScript": {
-    //   "type": "object"
-    // }  
+    },
+    "customScript": {
+      "type": "object"
+    }  
   },
   "variables": {
     "nicName": "[concat(parameters('vmName'), '-nic-', uniqueString(parameters('subnetId')))]",
@@ -379,23 +379,23 @@
               "DomainName": "[parameters('domainName')]"
             }
           }
+        },
+        {
+          "type": "Microsoft.Compute/virtualMachines/extensions",
+          "apiVersion": "2021-04-01",
+          "name": "[concat(parameters('vmName'), '/InstallExcel')]",
+          "location": "[resourceGroup().location]",
+          "properties": {
+            "publisher": "Microsoft.Compute",
+            "type": "CustomScriptExtension",
+            "typeHandlerVersion": "1.10",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+              "fileUris": "[parameters('customScript').fileUris]",
+              "commandToExecute": "[parameters('customScript').commandToExecute]"
+            }
+          }
         }
-        // {
-        //   "type": "Microsoft.Compute/virtualMachines/extensions",
-        //   "apiVersion": "2021-04-01",
-        //   "name": "[concat(parameters('vmName'), '/InstallExcel')]",
-        //   "location": "[resourceGroup().location]",
-        //   "properties": {
-        //     "publisher": "Microsoft.Compute",
-        //     "type": "CustomScriptExtension",
-        //     "typeHandlerVersion": "1.10",
-        //     "autoUpgradeMinorVersion": true,
-        //     "settings": {
-        //       "fileUris": "[parameters('customScript').fileUris]",
-        //       "commandToExecute": "[parameters('customScript').commandToExecute]"
-        //     }
-        //   }
-        // }
       ]
     }
   ]

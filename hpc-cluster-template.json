@@ -83,7 +83,7 @@
       },
       "computeNodeNumber": {
           "type": "int",
-          "defaultValue": 5,
+          "defaultValue": 2,
           "metadata": {
               "description": "The number of the compute nodes."
           }
@@ -817,15 +817,15 @@
                   },
                   "domainName": {
                       "value": "[variables('domainName')]"
+                  },
+                  "customScript": {
+                      "value": {
+                          "fileUris": [
+                              "[concat(variables('rawRepoUrl'), '/install-office.ps1')]"
+                          ],
+                          "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File install-office.ps1"
+                      }
                   }
-                  // "customScript": {
-                  //     "value": {
-                  //         "fileUris": [
-                  //             "[concat(variables('rawRepoUrl'), '/install-office.ps1')]"
-                  //         ],
-                  //         "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File install-office.ps1"
-                  //     }
-                  // }
               }
           }
       }
