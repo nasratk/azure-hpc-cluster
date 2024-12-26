@@ -385,6 +385,9 @@
           "apiVersion": "2021-04-01",
           "name": "[concat(parameters('vmName'), '/InstallExcel')]",
           "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+          ],
           "properties": {
             "publisher": "Microsoft.Compute",
             "type": "CustomScriptExtension",
