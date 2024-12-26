@@ -1,10 +1,10 @@
-# Download the Office Deployment Tool
+# Download the Office Deployment Tool (replace with actual URL if needed)
 $odtUrl = "https://download.microsoft.com/download/E/4/D/E4D9A805-C6D5-401B-8419-4D058AC3362A/officedeploymenttool_13822-20200.exe"
-$odtPath = "C:\ODT\officedeploymenttool.exe"
+$odtPath = "$env:TEMP\officedeploymenttool.exe" 
 Invoke-WebRequest -Uri $odtUrl -OutFile $odtPath
 
 # Extract the ODT
-Start-Process -FilePath $odtPath -ArgumentList "/quiet /extract:C:\ODT" -Wait
+Start-Process -FilePath $odtPath -ArgumentList "/quiet /extract:$env:TEMP" -Wait
 
 # Create the configuration XML file
 $configXml = @"
@@ -17,8 +17,8 @@ $configXml = @"
   <Display Level="None" AcceptEULA="TRUE" />
 </Configuration>
 "@
-$configXmlPath = "C:\ODT\configuration.xml"
+$configXmlPath = "$env:TEMP\configuration.xml"
 $configXml | Out-File -FilePath $configXmlPath -Encoding UTF8
 
 # Install Office ProPlus
-Start-Process -FilePath "C:\ODT\setup.exe" -ArgumentList "/configure C:\ODT\configuration.xml" -Wait
+Start-Process -FilePath "$env:TEMP\setup.exe" -ArgumentList "/configure $env:TEMP\configuration.xml" -Wait
