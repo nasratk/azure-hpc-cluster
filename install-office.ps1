@@ -1,5 +1,5 @@
 # Download the Office Deployment Tool (replace with actual URL if needed)
-$odtUrl = "https://download.microsoft.com/download/E/4/D/E4D9A805-C6D5-401B-8419-4D058AC3362A/officedeploymenttool_13822-20200.exe"
+$odtUrl = "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_18129-20158.exe"
 $odtPath = "$env:TEMP\officedeploymenttool.exe" 
 Invoke-WebRequest -Uri $odtUrl -OutFile $odtPath
 
