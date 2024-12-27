@@ -821,9 +821,9 @@
                   "customScript": {
                       "value": {
                           "fileUris": [
-                              "[concat(variables('rawRepoUrl'), '/install-office.ps1')]"
+                              "[concat(variables('rawRepoUrl'), '/install-excel.ps1')]"
                           ],
-                          "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File install-office.ps1"
+                          "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File install-excel.ps1"
                       }
                   }
               }
