@@ -27,20 +27,20 @@ try {
 
     # Create the configuration XML file for Excel (Volume Licensing)
     $configXml = @"
-    <Configuration>
-      <Add OfficeClientEdition="64" Channel="PerpetualVL2021">
-        <Product ID="Excel2021Volume">
-          <Language ID="en-us" />
-        </Product>
-      </Add>
-      <Display Level="None" AcceptEULA="TRUE" />
-      <Property Name="AUTOACTIVATE" Value="1" />
-      <Property Name="SharedComputerLicensing" Value="1" />
-      <Property Name="PinIconsToTaskbar" Value="FALSE" />
-      <Property Name="SCLCacheOverride" Value="0" />
-      <Property Name="DisableFirstRunWizard" Value="TRUE" />
-    </Configuration>
-    "@
+<Configuration>
+  <Add OfficeClientEdition="64" Channel="PerpetualVL2021">
+    <Product ID="Excel2021Volume">
+      <Language ID="en-us" />
+    </Product>
+  </Add>
+  <Display Level="None" AcceptEULA="TRUE" />
+  <Property Name="AUTOACTIVATE" Value="1" />
+  <Property Name="SharedComputerLicensing" Value="1" />
+  <Property Name="PinIconsToTaskbar" Value="FALSE" />
+  <Property Name="SCLCacheOverride" Value="0" />
+  <Property Name="DisableFirstRunWizard" Value="TRUE" />
+</Configuration>
+"@
     $configXmlPath = "$env:TEMP\configuration.xml"
     $configXml | Out-File -FilePath $configXmlPath -Encoding UTF8
     Log-Message "Created configuration XML file."
